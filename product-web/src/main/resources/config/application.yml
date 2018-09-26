@@ -1,0 +1,6 @@
+server:
+  port: 8099
+  context-path: /
+spring:
+  profiles:
+    active: datasource,mybatis,mvc
