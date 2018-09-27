@@ -94,8 +94,9 @@
 </div>
 
 </body>
-<script src="/static/fileinput/js/jquery.js"></script>
+
 <script src="/static/bootstrap4/js/bootstrap.js"></script>
+<script src="/static/bootstrap4/js/jquery.js"></script>
 <script src="/static/step/js/jquery.step.min.js"></script>
 <script src="/static/layui/layui.all.js" charset="utf-8"></script>
 <script src="/static/my/add_step.js" charset="utf-8"></script>

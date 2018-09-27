@@ -30,7 +30,7 @@ public class TestController {
     public String ssss(Model model){
         return "upload";
     }
-    @RequestMapping("/{name}")
+   // @RequestMapping("/{name}")
     public String ssss1(@PathVariable String name, Model model){
         System.out.println("str = " + name);
         return name;
