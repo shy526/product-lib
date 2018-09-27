@@ -1,5 +1,6 @@
 package top.ccxh.web.controller;
 
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.ccxh.mapper.pojo.Accesskey;
 import top.ccxh.service.AccessKeyService;
+import top.ccxh.web.pojo.Result;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -31,10 +33,20 @@ public class AccessKeyController {
     }
     @RequestMapping("delete")
     @ResponseBody
-    public List<Accesskey> deleteIds(@RequestParam(value="ids[]") List<Integer >ids){
-        System.out.println("ids = " + ids);;
-        accessKeyService.bathDeleteAccessKeyByid(ids);
-        return null;
+    public Result deleteIds(@RequestParam(value="ids[]") List<Integer >ids){
+        if(accessKeyService.bathDeleteAccessKeyByid(ids)) {
+            return Result.ok();
+        }
+        return Result.error();
+    }
+
+    @RequestMapping("update/status")
+    @ResponseBody
+    public Result updateStatus(Integer id, Integer status){
+        if(accessKeyService.updateAccessKeyStatus(id,status)) {
+            return Result.ok();
+        }
+        return Result.error();
     }
     @RequestMapping("page/list")
     public String goList(){

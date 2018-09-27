@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/static\bootstrap4\css\bootstrap.css"
-    <link rel="stylesheet" href="/static\bootstraptable\css\bootstrap-table.min.css"
+    <link rel="stylesheet" href="/static\bootstrap4\css\bootstrap.css">
+    <link rel="stylesheet" href="/static\bootstraptable\css\bootstrap-table.min.css"?
     <link href="/static/imageplug/style.css" type="text/css" rel="stylesheet">
+    <link href="/static/layui/css/modules/layer/default/layer.css" type="text/css" rel="stylesheet">
 
     <title>邀请码列表</title>
     <style>
@@ -56,6 +57,8 @@
 <script src="/static/bootstrap4/js/bootstrap.js"></script>
 <script src="/static/bootstraptable/js/bootstrap-table.min.js"></script>
 <script src="/static/bootstraptable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="/static/layui/lay/modules/layer.js"></script>
+
 
 
 
@@ -178,11 +181,12 @@
                 visible: true,//false表示不显示
                 align: 'center', // 居中显示,
                 sortable: true,//启用排序
-                formatter : function (value) {
+                formatter : function (value,row,index) {
                     if (value==1){
-                        return value+"<button class=\"btn  btn-danger btn-sm\" onclick=\"del(\\'' + row.stdId + '\\')\">不可用</button>"
+                        return "<button class=\"btn btn-danger  btn-sm\" onclick='isStatus("+JSON.stringify(row)+","+index+")'>可用</button>"
                     }else {
-                        return "<button class=\"btn  btn-success btn-sm\" onclick=\"del(\\'' + row.stdId + '\\')\">可用</button>"
+                        return   "<button class=\"btn btn-success  btn-sm\" onclick='isStatus("+JSON.stringify(row)+","+index+")'>不可用</button>"
+
                     }
 
                 }
@@ -207,9 +211,6 @@
         }
 
     })
-    function del(value) {
-        alert(value)
-    }
     function dateFtt(fmt,date)
     { //author: meizz
         var o = {
@@ -249,15 +250,44 @@
                     ids: arrayIds
                 },
                 success: function (result) {
-                    if (result.error) {
+                    if (result.code=200) {
                         for (var i = 0; i < select.length; i++) {
                             $("#table").bootstrapTable('removeByUniqueId', select[i].id);
                         }
                     } else {
+                        layer.msg('个别删除错误，请刷新页面确认');
                     }
                 }
             })
         }
 
     })
+
+    function isStatus(row,index) {
+       var status =1;
+        if (row.dataStatus==1){
+            status=0;
+        }
+        $.ajax({
+            url: "/accesskey/update/status",
+            data: {
+                id:row.id,
+                status:status
+            },
+            success: function (result) {
+                if (result.code=200) {
+                    layer.msg('修改成功');
+                    var rows = {
+                        index : index,  //更新列所在行的索引
+                        field : "dataStatus", //要更新列的field
+                        value : status //要更新列的数据
+                    }//更新表格数据
+                    $('#table').bootstrapTable("updateCell",rows);
+
+                } else {
+                    layer.msg('修改失败');
+                }
+            }
+        })
+    }
 </script>

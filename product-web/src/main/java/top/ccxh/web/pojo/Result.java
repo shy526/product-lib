@@ -17,10 +17,20 @@ public class Result implements Serializable {
         result.setData(data);
         return result;
     }
+    public static Result ok(){
+        Result result = new Result();
+        result.setCode(200);
+        return result;
+    }
     public static Result error(String errorMessage){
         Result result = new Result();
         result.setCode(500);
         result.setErrorMessage(errorMessage);
+        return result;
+    }
+    public static Result error(){
+        Result result = new Result();
+        result.setCode(500);
         return result;
     }
 
