@@ -1,9 +1,12 @@
 package top.ccxh.mapper.pojo;
 
+import javax.persistence.Table;
+
 /**
  * 类目
  * @author admin
  */
+@Table(name = "t_product_type")
 public class ProductType extends BasePojo {
     private String name ;
     private Integer paren ;

@@ -17,7 +17,7 @@ import java.util.List;
  */
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Service
-public class AccessKeyServiceImpl implements AccessKeyService {
+public class AccessKeyServiceImpl extends BaseService implements AccessKeyService  {
 
     @Autowired
     private AccessKeyMapper accessKeyMapper;
@@ -54,20 +54,5 @@ public class AccessKeyServiceImpl implements AccessKeyService {
         return false;
     }
 
-    /**
-     * 改变返回结果
-     * @param result
-     * @return
-     */
-    private boolean judgeInteger(Integer result){
-        return result>0;
-    }
-    /**
-     * 改变返回结果
-     * @param result
-     * @return
-     */
-    private boolean judgeEq(Integer result, Integer value){
-        return result.equals(value);
-    }
+
 }

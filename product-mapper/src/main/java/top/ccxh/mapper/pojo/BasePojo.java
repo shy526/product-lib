@@ -48,4 +48,10 @@ public class BasePojo implements Serializable {
         this.createTime=System.currentTimeMillis();
         this.updateTime=createTime;
     }
+    /**
+     * 快速设置时间参数
+     */
+    public void quickUpdateTime(){
+        this.updateTime=System.currentTimeMillis();
+    }
 }
