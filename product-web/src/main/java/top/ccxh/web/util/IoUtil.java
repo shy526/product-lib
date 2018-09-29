@@ -6,27 +6,32 @@ import org.springframework.web.multipart.MultipartFile;
 import sun.nio.ch.IOUtil;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author admin
  */
 public class IoUtil {
     private static final Logger LOGGER=LoggerFactory.getLogger(IoUtil.class);
+
     public static String imgOut(MultipartFile file,String root) {
         if (isImage(file)) {
             try {
-                swapOut(file.getInputStream(),getDatePath(root,file.getOriginalFilename()));
+                String datePath = getDatePath(root, file.getOriginalFilename());
+                swapOut(file.getInputStream(),datePath);
+                return datePath;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
         return null;
     }
 

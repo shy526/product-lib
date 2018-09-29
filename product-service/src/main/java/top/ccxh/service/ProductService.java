@@ -1,5 +1,6 @@
 package top.ccxh.service;
 
+import top.ccxh.mapper.pojo.ImgResource;
 import top.ccxh.mapper.pojo.Product;
 
 import java.util.List;
@@ -7,6 +8,10 @@ import java.util.List;
 public interface ProductService {
     /**
      * 添加商品
+     * @param imgResources
+     * @param product
+     * @return
      */
-   // void  addProduct(List<MultipartFile> file, Product product);
+    boolean addProduct(List<ImgResource> imgResources, Product product);
+
 }

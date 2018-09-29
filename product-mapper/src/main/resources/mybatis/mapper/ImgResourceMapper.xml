@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.ccxh.mapper.port.ImgResourceMapper">
+
+    <insert id="bathInsert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_img_resource (local_path,show_url,img_type,create_time,update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.localPath}, #{item.showUrl},#{item.imgType},#{item.createTime},#{item.updateTime})
+        </foreach>
+    </insert>
+
+</mapper>

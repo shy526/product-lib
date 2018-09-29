@@ -52,7 +52,7 @@ $(function () {
     })
     $("#continue").click(function () {
 
-        window.location.href = '/product/add/page';
+        window.location.href = '/product/page/add';
     })
 
     //多文件列表示例
