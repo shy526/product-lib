@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.ccxh.mapper.port.ProductMapper">
+    <resultMap id="p" type="top.ccxh.mapper.pojo.Product" autoMapping="true">
+        <id column="id" property="id"/>
+        <association property="productType" resultMap="productTyperMap" autoMapping="true">
+
+        </association>
+        <collection property="imgResources" resultMap="imgResourceMap">
+
+        </collection>
+    </resultMap>
+    <resultMap id="productTyperMap" type="top.ccxh.mapper.pojo.ProductType">
+        <id column="pt_id" property="id"/>
+        <result column="pt_name" property="name"></result>
+        <result column="pt_create_time" property="createTime"></result>
+        <result column="pt_update_time" property="updateTime"></result>
+        <result column="pt_data_status" property="dataStatus"></result>
+    </resultMap>
+
+    <resultMap id="imgResourceMap" type="top.ccxh.mapper.pojo.ImgResource" autoMapping="true">
+        <id column="imgr_id" property="id"/>
+        <result column="imgr_pt_create_time" property="createTime"></result>
+        <result column="imgr_pt_update_time" property="updateTime"></result>
+    </resultMap>
+    <select id="selectProductAll" resultMap="p">
+               SELECT
+          p.*,
+          pt.`id` pt_id,
+          pt.name pt_name,
+          p.create_time pt_create_time,
+          pt.update_time pt_update_time,
+          pt.data_status pt_data_status,
+          imgr.id imgr_id,
+          imgr.`create_time` imgr_pt_create_time,
+          imgr.`update_time` imgr_pt_update_time,
+          imgr.`local_path`,
+          imgr.`show_url`,
+          imgr.`img_type`
+        FROM
+          `t_product` p
+          LEFT JOIN `t_product_type` pt
+            ON p.type_id = pt.`id`
+          LEFT JOIN `t_product_img` pimg
+            ON p.`id` = pimg.`product_id`
+          LEFT JOIN `t_img_resource` imgr
+            ON pimg.`img_id` = imgr.`id`
+    </select>
+
+</mapper>

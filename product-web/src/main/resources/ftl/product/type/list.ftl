@@ -114,7 +114,7 @@
                 name: val
             },
             success: function (result) {
-                if (result.code = 200) {
+                if (result.code == 200) {
                     layer.msg('类目添加成功');
                     window.location.href = '/product/type/page/list';
                 } else {
@@ -260,7 +260,7 @@
                     ids: arrayIds
                 },
                 success: function (result) {
-                    if (result.code = 200) {
+                    if (result.code == 200) {
                         for (var i = 0; i < select.length; i++) {
                             $("#table").bootstrapTable('removeByUniqueId', select[i].id);
                         }
@@ -285,7 +285,7 @@
                 status: status
             },
             success: function (result) {
-                if (result.code = 200) {
+                if (result.code == 200) {
                     layer.msg('修改成功');
                     var rows = {
                         index: index,  //更新列所在行的索引
@@ -342,7 +342,7 @@
                 name: name
             },
             success: function (result) {
-                if (result.code = 200) {
+                if (result.code == 200) {
 
                     //更新表格数据
                     $('#table').bootstrapTable("updateRow", {

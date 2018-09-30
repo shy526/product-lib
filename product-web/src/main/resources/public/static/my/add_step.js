@@ -1,4 +1,3 @@
-
 /**
  * 控制哪一步显示或关闭
  * @param index
@@ -17,6 +16,7 @@ $(function () {
         }
         $(".step-" + index).show()
     }
+
     var $step = $("#step");
     var stepFlag = true;
     $step.step({
@@ -93,7 +93,7 @@ $(function () {
                 tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
                 tds.eq(3).html(''); //清空操作
                 $step.nextStep()
-                stepShow( $step.index);
+                stepShow($step.index);
                 $("#prevBtn").hide();
                 return delete this.files[index]; //删除文件队列已经上传成功的文件
             }
@@ -108,7 +108,35 @@ $(function () {
             //额外参数获取
             name: function () {
                 return $('input[name="name"]').val();
+            },
+            typeId : function () {
+                 return $("select[name='typeId']").val()
             }
+
         }
     });
+
+    function createCate(msg) {
+        $("select[name='typeId']").empty()
+        $.ajax({
+            url: "/product/type/all",
+            success: function (result) {
+                if (!result) {
+                    layer.msg('类目加载异常');
+                    return;
+                }
+                for (let i = 0; i < result.length; i++) {
+                    let html = "<option value='" + result[i].id + "'>" + result[i].name + "</option>"
+                    $("select[name='typeId']").append(html);
+                }
+                if (msg) {
+                    layer.msg(msg);
+                }
+            }
+        })
+    }
+    createCate();
+    $("#refresh-cate").click(function () {
+        createCate("刷新成功");
+    })
 })

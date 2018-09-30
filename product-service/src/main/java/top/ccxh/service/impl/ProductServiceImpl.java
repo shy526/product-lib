@@ -36,8 +36,13 @@ public class ProductServiceImpl extends BaseService implements ProductService {
          imgResourceMapper.bathInsert(imgResources);
          product.quickTime();
          productMapper.insert(product);
-        LOGGER.info("id:{}",product.getId());
+
         productImgMapper.bathInsertProductRe(product.getId(),imgResources);
          return true;
+    }
+
+    @Override
+    public List<Product> selectAll() {
+        return productMapper.selectProductAll();
     }
 }

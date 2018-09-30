@@ -43,14 +43,27 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8" style="padding-top: 40px">
             <div class="step-0">
-                <div class="input-group mb-3">
+                <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">名称</span>
                     </div>
                     <input type="text" class="form-control" placeholder="产品名称" name="name">
                 </div>
+                <div class="input-group" style="padding-top: 30px;" >
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">类目</span>
+                    </div>
+                        <select class="form-control" name="typeId">
+
+                        </select>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-primary" id="refresh-cate">刷新</button>
+                        <a type="button" class="btn btn-success" href="/product/type/page/list" target="_blank">添加</a>
+                    </div>
+
+                </div>
             </div>
-            <div class="step-1" style="display:none">
+            <div class="step-1" style="display:none;padding-top: 10px">
                 <div class="layui-upload">
                     <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
                     <div class="layui-upload-list">
@@ -94,9 +107,9 @@
 </div>
 
 </body>
-
-<script src="/static/bootstrap4/js/bootstrap.js"></script>
 <script src="/static/bootstrap4/js/jquery.js"></script>
+<script src="/static/bootstrap4/js/bootstrap.js"></script>
+
 <script src="/static/step/js/jquery.step.min.js"></script>
 <script src="/static/layui/layui.all.js" charset="utf-8"></script>
 <script src="/static/my/add_step.js" charset="utf-8"></script>

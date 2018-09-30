@@ -10,6 +10,6 @@ logging:
 config:
   file:
     local:
-     path: 'D:\weidian_git\product-lib\product-web\src\main\resources\public\static\productImg'
+     path: 'd:\Users\admin\Desktop\1\resources\public\static\productImg'
     show:
       url: '\static\productImg'

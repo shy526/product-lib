@@ -14,4 +14,9 @@ public interface ProductService {
      */
     boolean addProduct(List<ImgResource> imgResources, Product product);
 
+    /**
+     * 返回所有商品
+     * @return
+     */
+    List<Product> selectAll();
 }

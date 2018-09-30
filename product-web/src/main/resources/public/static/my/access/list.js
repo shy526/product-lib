@@ -173,7 +173,7 @@ $(function () {
                     ids: arrayIds
                 },
                 success: function (result) {
-                    if (result.code = 200) {
+                    if (result.code == 200) {
                         for (var i = 0; i < select.length; i++) {
                             $("#table").bootstrapTable('removeByUniqueId', select[i].id);
                         }
@@ -203,7 +203,7 @@ $(function () {
                 status: status
             },
             success: function (result) {
-                if (result.code = 200) {
+                if (result.code == 200) {
                     layer.msg('修改成功');
                     var rows = {
                         index: index,  //更新列所在行的索引

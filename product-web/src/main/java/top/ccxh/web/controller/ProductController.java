@@ -51,7 +51,7 @@ public class ProductController {
                         ImgResource imgResource = new ImgResource();
                         imgResource.setLocalPath(path);
                         imgResource.quickTime();
-                        imgResource.setShowUrl(showUrl);
+                        imgResource.setShowUrl(path.substring(path.indexOf(showUrl)));
                         imgResources.add(imgResource);
                     }
 
@@ -61,5 +61,12 @@ public class ProductController {
                 }
         }
         return Result.error("no");
+    }
+
+    @RequestMapping("all")
+    @ResponseBody
+    public List<Product> selectAll(){
+        List<Product> products = productService.selectAll();
+        return products;
     }
 }

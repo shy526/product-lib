@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html lang="zh-cmn-Hans" style="    background: #252525;">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="static/index/css/demo.css">
     <link rel="stylesheet" href="static/index/css/main.css">
     <link rel="stylesheet" href="static/index/dist/sortable.min.css">
-    <script type="text/javascript" src="static/index/dist/sortable.min.js"></script>
+
     <style>
         .seek_c{
             height: 36px;!important;
@@ -81,37 +81,16 @@
 
         </div>
         <div class="wrapper" style="    padding: 10px 0;!important;">
-            <ul class="sortable__nav nav">
+            <ul class="sortable__nav nav" id="cate">
                 <li>
                     <a data-sjslink="all" class="nav__link">
                         所有
                     </a>
                 </li>
-                <li>
-                    <a data-sjslink="flatty" class="nav__link">
-                        扁平化
-                    </a>
-                </li>
-                <li>
-                    <a data-sjslink="funny" class="nav__link">
-                        创意
-                    </a>
-                </li>
             </ul>
             <div id="sortable" class="sjs-default">
-                <div data-sjsel="flatty">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-1.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 1</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, eius, asperiores.
-                                Incidunt sapiente est quae iure...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div data-sjsel="flatty">
+
+                <#--<div data-sjsel="flatty">
                     <div class="card">
                         <img class="card__picture" src="static/index/images/item-2.png" alt="">
                         <div class="card-infos">
@@ -122,98 +101,76 @@
                             </p>
                         </div>
                     </div>
-                </div>
-                <div data-sjsel="funny">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-3.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 3</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, placeat voluptate, fuga
-                                tenetur eos ducimus animi porro...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div data-sjsel="flatty">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-4.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 4</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit doloremque quisquam,
-                                obcaecati unde nam est quos...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div data-sjsel="flatty">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-5.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 5</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse corporis hic minima nisi
-                                reprehenderit...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div data-sjsel="funny">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-1.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 6</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel voluptatibus, id, deserunt
-                                inventore...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div data-sjsel="flatty">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-2.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 7</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum enim beatae vero culpa,
-                                fuga, magni sunt dolores nam...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div data-sjsel="flatty">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-3.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 8</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae numquam,
-                                blanditiis necessitatibus...
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div data-sjsel="funny">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-4.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 9</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur adipisci
-                                voluptatum laborum officiis...
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                </div>-->
+
             </div>
         </div>
     </div>
 </main>
-
+<script src="/static/bootstrap4/js/jquery.js"></script>
+<script type="text/javascript" src="/static/index/dist/sortable.min.js"></script>
+<script src="/static/layui/lay/modules/layer.js"></script>
 <script type="text/javascript">
-    document.querySelector('#sortable').sortablejs();
+
+
+    function createCate() {
+        $("#cate").empty()
+        let html="       <li>\n" +
+                "                    <a data-sjslink=\"all\" class=\"nav__link\">\n" +
+                "                        所有\n" +
+                "                    </a>\n" +
+                "                </li>";
+        $("#cate").append(html);
+        $.ajax({
+            url: "/product/type/all",
+            success: function (result) {
+                if (result==null) {
+                    layer.msg('类目加载异常');
+                    return;
+                }
+                    for (let i=0;i<result.length;i++){
+                        let html="       <li>\n" +
+                                "                    <a data-sjslink='"+result[i].id+"' class=\"nav__link\">\n" +
+                                result[i].id+
+                                "                    </a>\n" +
+                                "                </li>";
+                        $("#cate").append(html);
+
+                    }
+                createItem()
+            }
+        })
+    }
+    createCate();
+    function createItem() {
+        $("#sortable").empty();
+        $.ajax({
+            url: "/product/all",
+            success: function (result) {
+                if (result==null) {
+                    layer.msg('产品加载异常');
+                    return;
+                }
+                    for (let i=0;i<result.length;i++){
+                        let html="<div data-sjsel='"+result[i].typeId+"'>\n" +
+                                "                    <div class=\"card\">\n" +
+                                "                        <img class=\"card__picture\" src='"+result[i].imgResources[0].showUrl+"' alt=\"\">\n" +
+                                "                        <div class=\"card-infos\">\n" +
+                                "                            <h2 class=\"card__title\">"+result[i].name+"</h2>\n" +
+                                "                            <p class=\"card__text\">\n" +
+                                "描述"
+                                "                            </p>\n" +
+                                "                        </div>\n" +
+                                "                    </div>\n" +
+                                "                </div>";
+                        $('#sortable').append(html);
+                    }
+                document.querySelector('#sortable').sortablejs();
+
+            }
+        })
+    }
+
 </script>
 
 
