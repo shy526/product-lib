@@ -3,16 +3,14 @@ spring:
     view:
       suffix: .ftl
       #prefix: /WEB-INF/
+  resources:
+    static-locations: file:C:/Users/ccxh/Desktop/test/resources/public
   freemarker:
     charset: UTF-8
     content-type: text/html; charset=utf-8
-    template-loader-path: classpath:/ftl
+    template-loader-path: file:C:/Users/ccxh/Desktop/test/resources/ftl/
     cache: false
-  devtools:
-    livereload:
-      enabled: true
   http:
-   multipart:
-     max-file-size: 100MB
-     max-request-size: 1000MB
-
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB

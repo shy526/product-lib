@@ -70,7 +70,7 @@
 <main class="sortable">
 
     <div class="container">
-        <h1 class="ytitle">xxxx产品库</h1>
+        <h1 class="ytitle">产品库</h1>
         <div class="sortable__nav nav" style="padding: 20px 0;">
                 <span class="seek_c">
                     <input class="seek" >

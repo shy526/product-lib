@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>product-web</artifactId>
-    <packaging>jar</packaging>
+    <!-- <packaging>jar</packaging>-->
 
     <name>product-web Maven Webapp</name>
     <url>http://www.example.com</url>
@@ -33,15 +33,15 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         <!--内置tomcat-->
- <!--       <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>-->
+        <!--       <dependency>
+                   <groupId>org.springframework.boot</groupId>
+                   <artifactId>spring-boot-starter-tomcat</artifactId>
+               </dependency>-->
         <!-- 不引入tomcat报错-->
-  <!--      <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>-->
+        <!--      <dependency>
+                  <groupId>javax.servlet</groupId>
+                  <artifactId>javax.servlet-api</artifactId>
+              </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -50,18 +50,20 @@
             <groupId>top.ccxh</groupId>
             <artifactId>product-service</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <!--排除资源文件打包-->
+        <!--不打包任何资源文件-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <excludes>
+                <includes>
+                    <include>config/*</include>
+                </includes>
+          <!--      <excludes>
                     <exclude>**/*</exclude>
-                </excludes>
+                </excludes>-->
             </resource>
         </resources>
         <plugins>
@@ -89,16 +91,27 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                 <mainClass>top.ccxh.web.ApplicationAction</mainClass>
                     <layout>ZIP</layout>
+                    <executable>true</executable>
+                    <!--不打包依赖 任何依赖-->
                     <includes>
                         <include>
-                            <groupId>cn.jstars</groupId>
-                            <artifactId>datatocloud</artifactId>
+                            <groupId>nothing</groupId>
+                            <artifactId>nothing</artifactId>
                         </include>
                     </includes>
-                    <!---->
-                <!--    <classifier>exec</classifier>-->
+
+                    <!--<classifier>exec</classifier>-->
                 </configuration>
+               <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
