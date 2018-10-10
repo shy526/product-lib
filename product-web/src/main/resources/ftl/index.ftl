@@ -1,178 +1,119 @@
-﻿<!DOCTYPE html>
-<html lang="zh-cmn-Hans" style="    background: #252525;">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xx产品库</title>
-
-    <link rel="stylesheet" type="text/css" href="static/index/css/demo.css">
-    <link rel="stylesheet" href="static/index/css/main.css">
-    <link rel="stylesheet" href="static/index/dist/sortable.min.css">
-
-    <style>
-        .seek_c{
-            height: 36px;!important;
-            float: left;
-            border: 1px solid #b6b6b6;
-            border-color: #7b7b7b #b6b6b6 #b6b6b6 #7b7b7b;
-            background: #fff;
-            display: inline-block;
-            vertical-align: top;
-            width: 539px;
-            margin-right: 0;
-            border-right-width: 0;
-            border-color: #b8b8b8 transparent #ccc #b8b8b8;
-            overflow: hidden;
-        }
-        .seek{
-            height: 22px;
-            line-height: 22px;
-            margin: 6px 0 0 7px;
-            padding: 0;
-            background: transparent;
-            border: 0;
-            outline: 0;
-            -webkit-appearance: none;
-            top: 0px;
-            right: 0px;
-            display: block;
-            width: 500px;
-            font: 16px arial;
-        }
-        .seek_click{
-            width: 100px;
-            height: 36px;
-            color: #fff;
-            font-size: 15px;
-            letter-spacing: 1px;
-            background: #3385ff;
-            border-bottom: 1px solid #2d78f4;
-            outline: medium;
-            *border-bottom: 0;
-            -webkit-appearance: none;
-            -webkit-border-radius: 0;
-            border: 0;
-            padding: 0;
-        }
-        .ytitle{
-            color: #fff;
-            padding-top: 10px;
-            display: flex;
-            justify-content: center;
-            margin-top: 0;
-        }
-    </style>
-
+    <!--视口的设置，让网页能等比例的缩放到对应设备中-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--告诉ie浏览器用最新内核去渲染网页-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>产品库</title>
+    <link rel="stylesheet" href="/static/bootstrap/3/css/bootstrap.min.css">
 </head>
 <body>
 
-<main class="sortable">
 
-    <div class="container">
-        <h1 class="ytitle">产品库</h1>
-        <div class="sortable__nav nav" style="padding: 20px 0;">
-                <span class="seek_c">
-                    <input class="seek" >
-                </span>
-                <span style="float: left;">
-                    <input class="seek_click" type="submit" value="搜索">
-                </span>
+<style type="text/css">
+    .container .items {
+        border: 1px solid #EEEEEE;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .row {
+        margin-bottom: 10px;
+    }
+
+</style>
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12">
+            <div>
+
+
+                <h1 class="text-center"><img class="img-responsive center-block"
+                                             src="https://static.bootcss.com/www/assets/img/codeguide.png?1507601668481"/
+                    >产品库</h1>
+            </div>
 
         </div>
-        <div class="wrapper" style="    padding: 10px 0;!important;">
-            <ul class="sortable__nav nav" id="cate">
-                <li>
-                    <a data-sjslink="all" class="nav__link">
-                        所有
-                    </a>
-                </li>
-            </ul>
-            <div id="sortable" class="sjs-default">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        分类<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">菜单项1</a></li>
+                        <li><a href="#">菜单项2</a></li>
+                        <li><a href="#">菜单项3</a></li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" style="width: 80px;">
+                        <span class="glyphicon glyphicon-search"> 搜索</span>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                <#--<div data-sjsel="flatty">
-                    <div class="card">
-                        <img class="card__picture" src="static/index/images/item-2.png" alt="">
-                        <div class="card-infos">
-                            <h2 class="card__title">Example 2</h2>
-                            <p class="card__text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum vitae necessitatibus,
-                                dolorem similique vero explicabo...
-                            </p>
-                        </div>
-                    </div>
-                </div>-->
-
+    </div>
+<#--卡片-->
+    <div class="row">
+        <div class="col-lg-3 col-md-4">
+            <div class="items text-center">
+                <img class="img-responsive"
+                     src="https://static.bootcss.com/www/assets/img/codeguide.png?1507601668481"/>
+                <h3>名称</h3>
+                <p>标签</p>
+                <p>介绍</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <div class="items text-center">
+                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/yarn.png?1507601668481"/>
+                <h3>Bootstrap 编码规范</h3>
+                <p>by @mdo</p>
+                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <div class="items text-center">
+                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/react.png?1507601668481"/>
+                <h3>Bootstrap 编码规范</h3>
+                <p>by @mdo</p>
+                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <div class="items text-center">
+                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/webpack.png?1507601668481"/>
+                <h3>Bootstrap 编码规范</h3>
+                <p>by @mdo</p>
+                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
             </div>
         </div>
     </div>
-</main>
-<script src="/static/bootstrap4/js/jquery.js"></script>
-<script type="text/javascript" src="/static/index/dist/sortable.min.js"></script>
-<script src="/static/layui/lay/modules/layer.js"></script>
-<script type="text/javascript">
+</div>
 
-
-    function createCate() {
-        $("#cate").empty()
-        let html="       <li>\n" +
-                "                    <a data-sjslink=\"all\" class=\"nav__link\">\n" +
-                "                        所有\n" +
-                "                    </a>\n" +
-                "                </li>";
-        $("#cate").append(html);
-        $.ajax({
-            url: "/product/type/all",
-            success: function (result) {
-                if (result==null) {
-                    layer.msg('类目加载异常');
-                    return;
-                }
-                    for (let i=0;i<result.length;i++){
-                        let html="       <li>\n" +
-                                "                    <a data-sjslink='"+result[i].id+"' class=\"nav__link\">\n" +
-                                result[i].id+
-                                "                    </a>\n" +
-                                "                </li>";
-                        $("#cate").append(html);
-
-                    }
-                createItem()
-            }
-        })
-    }
-    createCate();
-    function createItem() {
-        $("#sortable").empty();
-        $.ajax({
-            url: "/product/all",
-            success: function (result) {
-                if (result==null) {
-                    layer.msg('产品加载异常');
-                    return;
-                }
-                    for (let i=0;i<result.length;i++){
-                        let html="<div data-sjsel='"+result[i].typeId+"'>\n" +
-                                "                    <div class=\"card\">\n" +
-                                "                        <img class=\"card__picture\" src='"+result[i].imgResources[0].showUrl+"' alt=\"\">\n" +
-                                "                        <div class=\"card-infos\">\n" +
-                                "                            <h2 class=\"card__title\">"+result[i].name+"</h2>\n" +
-                                "                            <p class=\"card__text\">\n" +
-                                "描述"
-                                "                            </p>\n" +
-                                "                        </div>\n" +
-                                "                    </div>\n" +
-                                "                </div>";
-                        $('#sortable').append(html);
-                    }
-                document.querySelector('#sortable').sortablejs();
-
-            }
-        })
-    }
-
+<script type="text/javascript" src="/static/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap/3/js/bootstrap.min.js"></script>
+<script>
+    $(window).scroll(function () {
+        //浏览器的高度加上滚动条的高度
+        var h=parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+        if (nowH>h){
+            //这里防止重复加载
+            return;
+        }
+        console.log("现在的高："+$(document).height()+"现在的高："+h)
+        nowH=h;
+        if ($(document).height() <=h){
+            console.log("开始加载数据")
+        }
+    });
 </script>
-
-
 </body>
 </html>
