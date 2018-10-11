@@ -10,7 +10,7 @@
     </delete>
 
     <select id="limitPage" resultType="ProductType">
-        SELECT * FROM t_product_type ORDER BY create_time limit #{now}, #{size}
+        SELECT * FROM t_product_type ORDER BY create_time DESC limit #{now}, #{size}
     </select>
     <select id="selectTypeByName" resultType="ProductType">
         SELECT * FROM  t_product_type WHERE `name`=#{name}

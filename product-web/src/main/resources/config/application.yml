@@ -11,6 +11,6 @@ config:
   file:
     local:
       img-path: 'D:\weidian_git\product-lib\product-web\src\main\resources\public\static\productImg'
-      sql-path: 'D:\weidian_git\product-lib\product-web\src\main\resources\init.sql'
+      sql-path: 'D:\project\product-lib\product-web\src\main\resources\init.sql'
     show:
       url: '\static\productImg'

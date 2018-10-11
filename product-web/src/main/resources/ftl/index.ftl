@@ -53,7 +53,10 @@
                 <input type="text" class="form-control">
                 <div class="input-group-btn">
                     <button class="btn btn-default" style="width: 80px;">
-                        <span class="glyphicon glyphicon-search"> 搜索</span>
+                        <span class="glyphicon glyphicon-search">搜索</span>
+                    </button>
+                    <button class="btn btn-default" style="width: 80px;">
+                        邀请码
                     </button>
                 </div>
             </div>
@@ -98,22 +101,30 @@
     </div>
 </div>
 
+<div>
+
+    <div style="display:none;" class="back-to" id="toolBackTop">
+        <a title="返回顶部" onclick="window.scrollTo(0,0);return false;" href="#top" class="back-top">
+            返回顶部</a>
+    </div>
+
+</div>
 <script type="text/javascript" src="/static/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap/3/js/bootstrap.min.js"></script>
 <script>
-    $(window).scroll(function () {
+/*    $(window).scroll(function () {
         //浏览器的高度加上滚动条的高度
-        var h=parseFloat($(window).height()) + parseFloat($(window).scrollTop());
-        if (nowH>h){
+        var h = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+        if (nowH > h) {
             //这里防止重复加载
             return;
         }
-        console.log("现在的高："+$(document).height()+"现在的高："+h)
-        nowH=h;
-        if ($(document).height() <=h){
+        console.log("现在的高：" + $(document).height() + "现在的高：" + h)
+        nowH = h;
+        if ($(document).height() <= h) {
             console.log("开始加载数据")
         }
-    });
+    });*/
 </script>
 </body>
 </html>
