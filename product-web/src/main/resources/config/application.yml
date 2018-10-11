@@ -10,6 +10,7 @@ logging:
 config:
   file:
     local:
-     path: 'd:\Users\admin\Desktop\1\resources\public\static\productImg'
+      img-path: 'D:\weidian_git\product-lib\product-web\src\main\resources\public\static\productImg'
+      sql-path: 'D:\weidian_git\product-lib\product-web\src\main\resources\init.sql'
     show:
       url: '\static\productImg'

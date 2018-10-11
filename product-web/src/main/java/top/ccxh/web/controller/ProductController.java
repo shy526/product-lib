@@ -24,7 +24,7 @@ import java.util.List;
 @Controller
 @RequestMapping("product")
 public class ProductController {
-    @Value("${config.file.local.path}")
+    @Value("${config.file.local.img-path}")
     private String localPath;
     @Value("${config.file.show.url}")
     private String showUrl;

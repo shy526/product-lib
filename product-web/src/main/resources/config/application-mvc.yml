@@ -4,11 +4,11 @@ spring:
       suffix: .ftl
       #prefix: /WEB-INF/
   resources:
-    static-locations: file:D:\project\product-lib\product-web\src\main\resources\public
+    static-locations: file:D:\weidian_git\product-lib\product-web\src\main\resources\public
   freemarker:
     charset: UTF-8
     content-type: text/html; charset=utf-8
-    template-loader-path: file:D:\project\product-lib\product-web\src\main\resources\ftl
+    template-loader-path: file:D:\weidian_git\product-lib\product-web\src\main\resources\ftl
     cache: false
   http:
     multipart:
