@@ -1,16 +1,11 @@
 package top.ccxh.web.controller;
 
-import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.util.StringUtil;
-import top.ccxh.mapper.pojo.Product;
 import top.ccxh.mapper.pojo.ProductType;
 import top.ccxh.service.ProductTypeService;
+import top.ccxh.mapper.pojo.PageModel;
 import top.ccxh.web.pojo.Result;
 
 import java.util.List;
@@ -18,17 +13,12 @@ import java.util.List;
 /**
  * @author admin
  */
-@Controller
-@RequestMapping("product/type")
+@RestController
+@RequestMapping("type")
 public class ProductTypeController {
     @Autowired
     ProductTypeService productTypeService;
-    @RequestMapping("page/list")
-    public String gotoPageList(){
-        return "product/type/list";
-    }
     @RequestMapping("delete")
-    @ResponseBody
     public Result bathDelete(@RequestParam(name = "ids[]")List<Integer> ids){
         if (ids!=null&&ids.size()>0){
           return   Result.is(productTypeService.bathDeleteProductTypeById(ids));
@@ -65,5 +55,19 @@ public class ProductTypeController {
             return Result.is(productTypeService.updateProductTypeById(productType));
         }
         return Result.error();
+    }
+    @RequestMapping("limit")
+    public Result pageTypelimit(@RequestBody PageModel pageModel){
+        if (pageModel!=null&&pageModel.getPageNumber()!=null&&pageModel.getPageSize()!=null){
+            return Result.ok(productTypeService.limitPage(pageModel));
+        }
+        return Result.error();
+    }
+    @RequestMapping("check")
+    public Result checkName(String name){
+        if (StringUtil.isNotEmpty(name)){
+            return Result.ok(productTypeService.checkName(name));
+        }
+        return Result.ok(false);
     }
 }

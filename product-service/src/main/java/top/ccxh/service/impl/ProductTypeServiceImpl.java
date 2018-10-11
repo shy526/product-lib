@@ -2,11 +2,11 @@ package top.ccxh.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.ccxh.mapper.pojo.PageModel;
 import top.ccxh.mapper.pojo.ProductType;
 import top.ccxh.mapper.port.ProductTypeMapper;
 import top.ccxh.service.ProductTypeService;
 
-import javax.print.attribute.IntegerSyntax;
 import java.util.List;
 
 @Service
@@ -37,5 +37,20 @@ public class ProductTypeServiceImpl extends BaseService implements ProductTypeSe
     public boolean addProductType(ProductType productType) {
         productType.quickTime();
         return this.judgeInteger(productTypeMapper.insertSelective(productType));
+    }
+
+    @Override
+    public PageModel limitPage(PageModel pageModel) {
+        int nowIndex = (pageModel.getPageNumber() - 1)*pageModel.getPageSize();
+        pageModel.setData(productTypeMapper.limitPage(nowIndex, pageModel.getPageSize()));
+        pageModel.setPageNumber(pageModel.getPageNumber()+1);
+        pageModel.setTotal(productTypeMapper.findMapperCount());
+        return pageModel;
+    }
+
+    @Override
+    public boolean checkName(String name) {
+       return productTypeMapper.selectTypeByName(name)==null;
+
     }
 }

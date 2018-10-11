@@ -1,5 +1,6 @@
 package top.ccxh.service;
 
+import top.ccxh.mapper.pojo.PageModel;
 import top.ccxh.mapper.pojo.ProductType;
 
 import java.util.List;
@@ -42,4 +43,17 @@ public interface ProductTypeService {
      * @return
      */
     boolean addProductType(ProductType productType);
+
+    /**
+     * 分页
+     * @return
+     */
+    PageModel limitPage(PageModel pageModel);
+
+    /**
+     * 检查名字是否重复
+     * @param name
+     * @return
+     */
+    boolean checkName(String name);
 }

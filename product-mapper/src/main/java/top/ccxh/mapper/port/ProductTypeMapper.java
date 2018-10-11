@@ -28,4 +28,14 @@ public interface ProductTypeMapper extends SysMapper<ProductType> {
      */
     @Update("UPDATE t_product_type SET data_status=#{status}  WHERE id = #{id}")
     Integer updateStatus(@Param("id") Integer id, @Param("status")Integer status);
+
+    /**
+     * 分页
+     * @param nowIndex
+     * @param pageSize
+     * @return
+     */
+    List<ProductType> limitPage(@Param("now") int nowIndex, @Param("size") Integer pageSize);
+
+    ProductType selectTypeByName(String name);
 }
