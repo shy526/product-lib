@@ -55,7 +55,7 @@
                     <button class="btn btn-default" style="width: 80px;">
                         <span class="glyphicon glyphicon-search">搜索</span>
                     </button>
-                    <button class="btn btn-default" style="width: 80px;">
+                    <button class="btn btn-default" style="width: 80px;" id="btn-yqm">
                         邀请码
                     </button>
                 </div>
@@ -101,17 +101,38 @@
     </div>
 </div>
 
-<div>
-
-    <div style="display:none;" class="back-to" id="toolBackTop">
-        <a title="返回顶部" onclick="window.scrollTo(0,0);return false;" href="#top" class="back-top">
-            返回顶部</a>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">邀请码</h4>
+            </div>
+            <div class="modal-body">
+                <p>当前邀请码: <span class="">xxxxx</span></p>
+                <div class="form-group"id="d-name">
+                    <label for="f-name">邀请码</label>
+                    <input type="text" class="form-control" placeholder="请输入邀请码" name="name">
+                </div>
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="ajax-login">切换</button>
+            </div>
+        </div>
     </div>
-
 </div>
+
 <script type="text/javascript" src="/static/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap/3/js/bootstrap.min.js"></script>
 <script>
+
+    $("#btn-yqm").click(function () {
+        $('#myModal').modal('show')
+    })
 /*    $(window).scroll(function () {
         //浏览器的高度加上滚动条的高度
         var h = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
