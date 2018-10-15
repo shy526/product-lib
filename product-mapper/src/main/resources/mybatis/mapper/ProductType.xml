@@ -15,4 +15,8 @@
     <select id="selectTypeByName" resultType="ProductType">
         SELECT * FROM  t_product_type WHERE `name`=#{name}
     </select>
+
+    <select id="selectAllByDataStatus"  resultType="ProductType">
+        SELECT * FROM  t_product_type WHERE `data_status`=0
+    </select>
 </mapper>

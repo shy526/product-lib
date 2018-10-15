@@ -26,13 +26,4 @@ public class TestController {
         System.out.println(System.currentTimeMillis()+"---"+now);
         return "index";
     }
-    @RequestMapping("/upload1")
-    public String ssss(Model model){
-        return "upload";
-    }
-   // @RequestMapping("/{name}")
-    public String ssss1(@PathVariable String name, Model model){
-        System.out.println("str = " + name);
-        return name;
-    }
 }

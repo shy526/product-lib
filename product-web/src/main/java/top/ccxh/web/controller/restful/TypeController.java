@@ -1,4 +1,4 @@
-package top.ccxh.web.controller;
+package top.ccxh.web.controller.restful;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("type")
-public class ProductTypeController {
+public class TypeController {
     @Autowired
     ProductTypeService productTypeService;
     @RequestMapping("delete")
@@ -25,14 +25,7 @@ public class ProductTypeController {
         }
         return Result.error();
     }
-
-    @RequestMapping("all")
-    @ResponseBody
-    public List<ProductType> selectAll(){
-       return productTypeService.selectAll();
-    }
     @RequestMapping("update/status")
-    @ResponseBody
     public Result updateStatus(Integer id,Integer status){
         if (id==null||status==null){
             return Result.error();
@@ -40,16 +33,13 @@ public class ProductTypeController {
         return Result.is(productTypeService.updateProductTypeStatusById(id,status));
     }
     @RequestMapping("add")
-    @ResponseBody
     public Result addItem(ProductType productType){
         if (productType!=null&& StringUtil.isNotEmpty(productType.getName())){
             return Result.is(productTypeService.addProductType(productType));
         }
         return Result.error();
     }
-
     @RequestMapping("update")
-    @ResponseBody
     public Result updateProductType(ProductType productType){
         if (productType!=null&& StringUtil.isNotEmpty(productType.getName())) {
             return Result.is(productTypeService.updateProductTypeById(productType));
@@ -57,7 +47,7 @@ public class ProductTypeController {
         return Result.error();
     }
     @RequestMapping("limit")
-    public Result pageTypelimit(@RequestBody PageModel pageModel){
+    public Result mpageTypelimit(@RequestBody PageModel pageModel){
         if (pageModel!=null&&pageModel.getPageNumber()!=null&&pageModel.getPageSize()!=null){
             return Result.ok(productTypeService.limitPage(pageModel));
         }

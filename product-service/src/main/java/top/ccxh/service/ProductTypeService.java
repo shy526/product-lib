@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ProductTypeService {
     /**
-     * 返回所有分类
+     * 返回所有分类 参数 是0的
      * @return
      */
     List<ProductType> selectAll();

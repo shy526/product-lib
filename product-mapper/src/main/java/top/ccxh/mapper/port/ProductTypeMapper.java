@@ -37,5 +37,17 @@ public interface ProductTypeMapper extends SysMapper<ProductType> {
      */
     List<ProductType> limitPage(@Param("now") int nowIndex, @Param("size") Integer pageSize);
 
+    /**
+     * 根据名字
+     * @param name
+     * @return
+     */
     ProductType selectTypeByName(String name);
+
+    /**
+     * 查询所有状态是0的数据
+     * @return
+     */
+    List<ProductType> selectAllByDataStatus();
+
 }

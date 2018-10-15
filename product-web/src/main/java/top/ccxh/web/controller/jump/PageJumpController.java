@@ -1,4 +1,4 @@
-package top.ccxh.web.controller;
+package top.ccxh.web.controller.jump;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,5 +13,13 @@ public class PageJumpController {
     @RequestMapping("type/manager")
     public String managerType(){
         return "type/manage";
+    }
+    @RequestMapping("product/add")
+    public String addProduct(){
+        return "product/add";
+    }
+    @RequestMapping("product/add2")
+    public String addProduct2(){
+        return "product/add2";
     }
 }

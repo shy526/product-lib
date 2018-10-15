@@ -9,6 +9,8 @@
         </foreach>
     </delete>
 
-
+    <select id="selectByName" resultType="Accesskey">
+        SELECT * FROM t_access_key id WHERE access_key=#{accessKey};
+    </select>
 
 </mapper>

@@ -28,4 +28,11 @@ public interface AccessKeyMapper extends SysMapper<Accesskey> {
      * @return
      */
     Integer bathDelete(List<Integer> ids);
+
+    /**
+     * 根据accessKey 返回key
+     * @param accessKey
+     * @return
+     */
+    Accesskey selectByName(String accessKey);
 }

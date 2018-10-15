@@ -16,7 +16,7 @@ public class ProductTypeServiceImpl extends BaseService implements ProductTypeSe
     private ProductTypeMapper productTypeMapper;
     @Override
     public List<ProductType> selectAll(){
-       return productTypeMapper.selectAll();
+       return productTypeMapper.selectAllByDataStatus();
     }
     @Override
     public boolean bathDeleteProductTypeById(List<Integer> ids){

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS  `t_access_key` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO  `t_access_key` VALUES(1,'guest','all',0,'默认游客账号,无法删除',0,NOW()*1000,NOW()*1000);
-INSERT INTO  `t_access_key` VALUES(2,'guest','all',1,'默认管理账号,无法删除和修改',0,NOW()*1000,NOW()*1000);
+INSERT INTO  `t_access_key` VALUES(2,'manager','all',1,'默认管理账号,无法删除和修改',0,NOW()*1000,NOW()*1000);
 /*
  * 图片资源表
  */

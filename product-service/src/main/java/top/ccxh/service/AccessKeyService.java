@@ -53,4 +53,18 @@ public interface AccessKeyService {
      * @return
      */
     boolean bathDeleteAccessKeyByid(List<Integer> ids);
+
+    /**
+     * 检查名称
+     * @param accessKey
+     * @return
+     */
+    Accesskey selectByName(String accessKey);
+
+    /**
+     * 搜索id
+     * @param id
+     * @return
+     */
+    Accesskey selectById(int id);
 }

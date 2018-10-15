@@ -22,8 +22,6 @@ import javax.persistence.Table;
 public class Accesskey extends BasePojo{
     private String accessKey;
     private String accessPower;
-    private Integer addPower;
-    private Integer omitPower;
     private Integer managerPower;
     private Integer dataStatus;
     private String description;
@@ -50,22 +48,6 @@ public class Accesskey extends BasePojo{
 
     public void setAccessPower(String accessPower) {
         this.accessPower = accessPower;
-    }
-
-    public Integer getAddPower() {
-        return addPower;
-    }
-
-    public void setAddPower(Integer addPower) {
-        this.addPower = addPower;
-    }
-
-    public Integer getOmitPower() {
-        return omitPower;
-    }
-
-    public void setOmitPower(Integer omitPower) {
-        this.omitPower = omitPower;
     }
 
     public Integer getManagerPower() {

@@ -1,12 +1,12 @@
-package top.ccxh.web.controller;
+package top.ccxh.web.controller.restful;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import top.ccxh.mapper.pojo.ImgResource;
 import top.ccxh.mapper.pojo.Product;
@@ -14,14 +14,13 @@ import top.ccxh.service.ProductService;
 import top.ccxh.web.pojo.Result;
 import top.ccxh.web.util.IoUtil;
 
-import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author admin
  */
-@Controller
+@RestController
 @RequestMapping("product")
 public class ProductController {
     @Value("${config.file.local.img-path}")
@@ -30,22 +29,12 @@ public class ProductController {
     private String showUrl;
     @Autowired
     private ProductService productService;
-    @RequestMapping("page/add")
-    public String toProductAdd(){
-        return "product/add_step";
-    }
-    @RequestMapping("page/info")
-    public String toInfo(Model model){
-        model.addAttribute("name","测试");
-        return "product/info";
-    }
 
     @RequestMapping("add")
-    @ResponseBody
-    public Result upload(List<MultipartFile> file, Product product){
-        if (file!=null&&file.size()>0){
+    public Result upload(List<MultipartFile> files, Product product){
+        if (files!=null&&files.size()>0){
                 List<ImgResource> imgResources = new ArrayList<>();
-                for (MultipartFile f : file) {
+                for (MultipartFile f : files) {
                     String path = IoUtil.imgOut(f, localPath);
                     if (path!=null){
                         ImgResource imgResource = new ImgResource();
