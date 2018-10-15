@@ -12,6 +12,7 @@ import java.util.List;
 public class Product extends BasePojo {
     private String name;
     private Integer typeId;
+    private Integer guest;
     @Transient
     private ProductType productType;
     @Transient
@@ -47,5 +48,13 @@ public class Product extends BasePojo {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Integer guest) {
+        this.guest = guest;
     }
 }

@@ -64,7 +64,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/page/type/manager">分类管理</a></li>
                             <li><a href="#">邀请码管理</a></li>
-                            <li><a href="#">产品管理</a></li>
+                            <li><a href="/page/product/add">添加产品</a></li>
                         </ul>
                     </div>
                 </div>
@@ -203,6 +203,9 @@
                     }
                 })
             })
+            $("#btn-yqm").click(function () {
+                $('#myModal').modal('show')
+            })
         },
         check:function(){
           let accessId = cookieManger.getAccessId();
@@ -254,9 +257,7 @@
         accessManager.init();
     })
 
-/*    $("#btn-yqm").click(function () {
-        $('#myModal').modal('show')
-    })
+/*
     /!*    $(window).scroll(function () {
             //浏览器的高度加上滚动条的高度
             var h = parseFloat($(window).height()) + parseFloat($(window).scrollTop());

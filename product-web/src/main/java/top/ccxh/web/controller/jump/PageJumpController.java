@@ -18,8 +18,4 @@ public class PageJumpController {
     public String addProduct(){
         return "product/add";
     }
-    @RequestMapping("product/add2")
-    public String addProduct2(){
-        return "product/add2";
-    }
 }
