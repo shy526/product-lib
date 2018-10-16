@@ -47,7 +47,7 @@ public class TypeController {
         return Result.error();
     }
     @RequestMapping("limit")
-    public Result mpageTypelimit(@RequestBody PageModel pageModel){
+    public Result pageTypelimit(@RequestBody PageModel pageModel){
         if (pageModel!=null&&pageModel.getPageNumber()!=null&&pageModel.getPageSize()!=null){
             return Result.ok(productTypeService.limitPage(pageModel));
         }

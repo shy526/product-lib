@@ -1,6 +1,7 @@
 package top.ccxh.service;
 
 import top.ccxh.mapper.pojo.Accesskey;
+import top.ccxh.mapper.pojo.PageModel;
 import top.ccxh.mapper.pojo.Power;
 
 import java.util.List;
@@ -67,4 +68,6 @@ public interface AccessKeyService {
      * @return
      */
     Accesskey selectById(int id);
+
+    PageModel limitPage(PageModel pageModel);
 }

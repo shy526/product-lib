@@ -35,4 +35,12 @@ public interface AccessKeyMapper extends SysMapper<Accesskey> {
      * @return
      */
     Accesskey selectByName(String accessKey);
+
+    /**
+     * 分页
+     * @param now
+     * @param size
+     * @return
+     */
+    List<Accesskey> limitPage(@Param("now")int now, @Param("size")Integer size);
 }

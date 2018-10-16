@@ -13,4 +13,7 @@
         SELECT * FROM t_access_key id WHERE access_key=#{accessKey};
     </select>
 
+    <select id="limitPage" resultType="Accesskey">
+        SELECT * FROM t_access_key ORDER BY create_time DESC limit #{now}, #{size}
+    </select>
 </mapper>

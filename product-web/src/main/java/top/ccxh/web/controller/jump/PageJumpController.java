@@ -18,4 +18,8 @@ public class PageJumpController {
     public String addProduct(){
         return "product/add";
     }
+    @RequestMapping("access/manager")
+    public String managerAccess(){
+        return "access/manage";
+    }
 }

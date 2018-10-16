@@ -52,10 +52,4 @@ public class ProductController {
         return Result.error("no");
     }
 
-    @RequestMapping("all")
-    @ResponseBody
-    public List<Product> selectAll(){
-        List<Product> products = productService.selectAll();
-        return products;
-    }
 }

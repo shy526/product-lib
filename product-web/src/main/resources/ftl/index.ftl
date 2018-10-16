@@ -63,7 +63,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="/page/type/manager">分类管理</a></li>
-                            <li><a href="#">邀请码管理</a></li>
+                            <li><a href="/page/access/manager">邀请码管理</a></li>
                             <li><a href="/page/product/add">添加产品</a></li>
                         </ul>
                     </div>
@@ -115,7 +115,7 @@
 <script type="text/javascript" src="/static/jquery/jquery.cookie.js"></script>
 <script type="text/javascript" src="/static/project/cookie/manager.js"></script>
 <script>
-    var accessManager = {
+    var indexManager = {
         ajax: {
             typeAll:function (func) {
                 $.ajax({
@@ -161,17 +161,17 @@
              * 下一页码
              */
             next:function () {
-                accessManager.ajax.productPage({page:accessManager.pageHelp.page},function (result) {
+                indexManager.ajax.productPage({page:indexManager.pageHelp.page},function (result) {
                     if(result.code==200){
                         if (result.data.length<=0){
-                            accessManager.pageHelp.flag=false
+                            indexManager.pageHelp.flag=false
                             $("#mmm").show();
                         }
-                        accessManager.pageHelp.page++;
-                        accessManager.pageHelp.xuanran(result.data)
-                        accessManager.pageHelp.dataArray=accessManager.pageHelp.dataArray.concat(result.data);
+                        indexManager.pageHelp.page++;
+                        indexManager.pageHelp.xuanran(result.data)
+                        indexManager.pageHelp.dataArray=indexManager.pageHelp.dataArray.concat(result.data);
                     }else {
-                        accessManager.pageHelp.flag=false
+                        indexManager.pageHelp.flag=false
                         $("#mmm").show();
                     }
                 })
@@ -180,20 +180,20 @@
                 setTimeout(function () {
                     let flag=document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
                     if (!flag){
-                        if(accessManager.pageHelp.flag ){
-                            accessManager.ajax.productPage({page:accessManager.pageHelp.page},function (result) {
+                        if(indexManager.pageHelp.flag ){
+                            indexManager.ajax.productPage({page:indexManager.pageHelp.page},function (result) {
                                 if(result.code==200){
                                     if (result.data.length>0){
-                                        accessManager.pageHelp.xuanran(result.data)
-                                        accessManager.pageHelp.dataArray=accessManager.pageHelp.dataArray.concat(result.data);
-                                        accessManager.pageHelp.checkScrollbar();
+                                        indexManager.pageHelp.xuanran(result.data)
+                                        indexManager.pageHelp.dataArray=indexManager.pageHelp.dataArray.concat(result.data);
+                                        indexManager.pageHelp.checkScrollbar();
                                     } else {
-                                        accessManager.pageHelp.flag=false
+                                        indexManager.pageHelp.flag=false
                                         $("#mmm").show();
                                     }
-                                    accessManager.pageHelp.page++;
+                                    indexManager.pageHelp.page++;
                                 }else {
-                                    accessManager.pageHelp.flag=false
+                                    indexManager.pageHelp.flag=false
                                     $("#mmm").show();
                                 }
                             })
@@ -232,15 +232,15 @@
                     //浏览器的高度加上滚动条的高度
                     let h = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
 
-                    if ($(document).height() <= h&&accessManager.pageHelp.flag) {
+                    if ($(document).height() <= h&&indexManager.pageHelp.flag) {
 
-                       accessManager.pageHelp.next();
+                       indexManager.pageHelp.next();
                     }
                 });
             },
             init:function () {
-                accessManager.pageHelp.checkScrollbar();
-                accessManager.pageHelp.monitorScrollbar();
+                indexManager.pageHelp.checkScrollbar();
+                indexManager.pageHelp.monitorScrollbar();
             }
         },
         check:function(){
@@ -257,7 +257,7 @@
           })
         },
         initCat:function(){
-            accessManager.ajax.typeAll(function (result) {
+            indexManager.ajax.typeAll(function (result) {
                 if (result.code==200){
                     if (result.data){
                         for (let i=0;i<result.data.length;i++){
@@ -269,31 +269,31 @@
                             let attr = $(this).attr("data-id");
                             $("#cards").empty();
                             if (attr==-1){
-                               accessManager.pageHelp.xuanran(accessManager.pageHelp.dataArray);
+                               indexManager.pageHelp.xuanran(indexManager.pageHelp.dataArray);
                                 return;
                             }
                             let array=[]
-                            for (let i=0;i<accessManager.pageHelp.dataArray.length;i++){
-                                if (attr==accessManager.pageHelp.dataArray[i].typeId){
-                                    array.push(accessManager.pageHelp.dataArray[i])
+                            for (let i=0;i<indexManager.pageHelp.dataArray.length;i++){
+                                if (attr==indexManager.pageHelp.dataArray[i].typeId){
+                                    array.push(indexManager.pageHelp.dataArray[i])
                                 }
                             }
-                            accessManager.pageHelp.xuanran(array);
+                            indexManager.pageHelp.xuanran(array);
                         })
                     }
                 }
             })
         },
         init:function () {
-            accessManager.initCat();
-            accessManager.check();
-            accessManager.binding();
-            accessManager.pageHelp.init()
+            indexManager.initCat();
+            indexManager.check();
+            indexManager.binding();
+            indexManager.pageHelp.init()
         },
     }
 
     $(function () {
-        accessManager.init();
+        indexManager.init();
     })
 
 </script>

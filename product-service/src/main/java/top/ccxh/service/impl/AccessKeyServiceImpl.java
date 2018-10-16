@@ -1,9 +1,9 @@
 package top.ccxh.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.ccxh.mapper.pojo.Accesskey;
+import top.ccxh.mapper.pojo.PageModel;
 import top.ccxh.mapper.pojo.Power;
 import top.ccxh.mapper.port.AccessKeyMapper;
 import top.ccxh.service.AccessKeyService;
@@ -59,6 +59,15 @@ public class AccessKeyServiceImpl extends BaseService implements AccessKeyServic
     @Override
     public Accesskey selectById(int id) {
         return accessKeyMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public PageModel limitPage(PageModel pageModel) {
+        int nowIndex = (pageModel.getPageNumber() - 1)*pageModel.getPageSize();
+        pageModel.setData(accessKeyMapper.limitPage(nowIndex, pageModel.getPageSize()));
+        pageModel.setPageNumber(pageModel.getPageNumber()+1);
+        pageModel.setTotal(accessKeyMapper.findMapperCount());
+        return pageModel;
     }
 
 
