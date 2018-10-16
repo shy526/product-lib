@@ -12,6 +12,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import top.ccxh.mapper.pojo.Accesskey;
 import top.ccxh.service.AccessKeyService;
+import top.ccxh.service.LegalEnum;
 import top.ccxh.web.pojo.Result;
 import top.ccxh.web.util.CookieUtils;
 
@@ -41,7 +42,7 @@ public class Checkjump {
             Accesskey accesskey = accessKeyService.selectById(Integer.parseInt(access));
             if (accesskey!=null){
                 //拥有用执行权限
-                if (accesskey.getManagerPower()==1){
+                if (accesskey.getManagerPower().equals(LegalEnum.VALID.getCode())){
                     result=joinPoint.proceed();
                 }
             }

@@ -22,13 +22,12 @@ public class AccessKeyServiceImpl extends BaseService implements AccessKeyServic
     @Override
     public boolean insertSelective(Accesskey accesskey, List<Power> accessPower){
         accesskey.quickTime();
-        accesskey.setAccessPower(JSON.toJSONString(accessPower));
        return judgeInteger( accessKeyMapper.insertSelective(accesskey));
     }
     @Override
     public boolean updateAccessKey(Accesskey accesskey, List<Power> accessPower){
         accesskey.quickTime();
-        accesskey.setAccessPower(JSON.toJSONString(accessPower));
+
        return judgeInteger( accessKeyMapper.updateByPrimaryKey(accesskey));
     }
     @Override

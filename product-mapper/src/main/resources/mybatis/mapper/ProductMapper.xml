@@ -48,4 +48,83 @@
             ON pimg.`img_id` = imgr.`id`
     </select>
 
+
+    <select id="selectDefaultAllLimit" resultMap="p">
+        SELECT
+          p.*,
+          pt.`id` pt_id,
+          pt.name pt_name,
+          p.create_time pt_create_time,
+          pt.update_time pt_update_time,
+          pt.data_status pt_data_status,
+          imgr.id imgr_id,
+          imgr.`create_time` imgr_pt_create_time,
+          imgr.`update_time` imgr_pt_update_time,
+          imgr.`local_path`,
+          imgr.`show_url`,
+          imgr.`img_type`
+        FROM
+          `t_product` p
+          LEFT JOIN `t_product_type` pt
+            ON p.type_id = pt.`id`
+          LEFT JOIN `t_product_img` pimg
+            ON p.`id` = pimg.`product_id`
+          LEFT JOIN `t_img_resource` imgr
+            ON pimg.`img_id` = imgr.`id`
+        WHERE p.data_status=0 AND p.guest=0
+        ORDER BY create_time DESC
+        LIMIT #{now}, #{size}
+    </select>
+    <select id="selectProductByIdLimit" resultMap="p">
+        SELECT
+          p.*,
+          pt.`id` pt_id,
+          pt.name pt_name,
+          p.create_time pt_create_time,
+          pt.update_time pt_update_time,
+          pt.data_status pt_data_status,
+          imgr.id imgr_id,
+          imgr.`create_time` imgr_pt_create_time,
+          imgr.`update_time` imgr_pt_update_time,
+          imgr.`local_path`,
+          imgr.`show_url`,
+          imgr.`img_type`
+        FROM
+          `t_product` p
+          LEFT JOIN `t_product_type` pt
+            ON p.type_id = pt.`id`
+          LEFT JOIN `t_product_img` pimg
+            ON p.`id` = pimg.`product_id`
+          LEFT JOIN `t_img_resource` imgr
+            ON pimg.`img_id` = imgr.`id`
+        WHERE p.data_status=0 AND p.guest=0
+          ORDER BY create_time DESC
+          LIMIT #{now}, #{size}
+    </select>
+
+    <select id="selectManagerLimit" resultMap="p">
+        SELECT
+          p.*,
+          pt.`id` pt_id,
+          pt.name pt_name,
+          p.create_time pt_create_time,
+          pt.update_time pt_update_time,
+          pt.data_status pt_data_status,
+          imgr.id imgr_id,
+          imgr.`create_time` imgr_pt_create_time,
+          imgr.`update_time` imgr_pt_update_time,
+          imgr.`local_path`,
+          imgr.`show_url`,
+          imgr.`img_type`
+        FROM
+          `t_product` p
+          LEFT JOIN `t_product_type` pt
+            ON p.type_id = pt.`id`
+          LEFT JOIN `t_product_img` pimg
+            ON p.`id` = pimg.`product_id`
+          LEFT JOIN `t_img_resource` imgr
+            ON pimg.`img_id` = imgr.`id`
+          ORDER BY create_time DESC
+          LIMIT #{now}, #{size}
+    </select>
 </mapper>

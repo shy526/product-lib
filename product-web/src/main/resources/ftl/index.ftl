@@ -74,75 +74,13 @@
 
     </div>
 <#--卡片-->
-    <div class="row">
-        <div class="col-lg-3 col-md-4" data-id="4">
-            <div class="items text-center" >
-                <img class="img-responsive"
-                     src="https://static.bootcss.com/www/assets/img/codeguide.png?1507601668481"/>
-                <h3>名称</h3>
-                <p>标签</p>
-                <p>介绍</p>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4" data-id="4">
-            <div class="items text-center">
-                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/yarn.png?1507601668481"/>
-                <h3>Bootstrap 编码规范</h3>
-                <p>by @mdo</p>
-                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4" data-id="4">
-            <div class="items text-center">
-                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/react.png?1507601668481"/>
-                <h3>Bootstrap 编码规范</h3>
-                <p>by @mdo</p>
-                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4" data-id="3">
-            <div class="items text-center">
-                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/webpack.png?1507601668481"/>
-                <h3>Bootstrap 编码规范</h3>
-                <p>by @mdo</p>
-                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
-            </div>
-        </div>
+    <div id="cards">
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-4" data-id="3">
-            <div class="items text-center" >
-                <img class="img-responsive"
-                     src="https://static.bootcss.com/www/assets/img/codeguide.png?1507601668481"/>
-                <h3>名称</h3>
-                <p>标签</p>
-                <p>介绍</p>
-            </div>
+        <div class="col-md-12">
+            <p class="text-success text-center" id="mmm" style="display: none">没有更多数据了</p>
         </div>
-        <div class="col-lg-3 col-md-4" data-id="4">
-            <div class="items text-center">
-                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/yarn.png?1507601668481"/>
-                <h3>Bootstrap 编码规范</h3>
-                <p>by @mdo</p>
-                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4" data-id="4">
-            <div class="items text-center">
-                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/react.png?1507601668481"/>
-                <h3>Bootstrap 编码规范</h3>
-                <p>by @mdo</p>
-                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4" data-id="3">
-            <div class="items text-center">
-                <img class="img-responsive" src="https://static.bootcss.com/www/assets/img/webpack.png?1507601668481"/>
-                <h3>Bootstrap 编码规范</h3>
-                <p>by @mdo</p>
-                <p>Bootstrap 编码规范：编写灵活、稳定、高质量的 HTML 和 CSS 代码的规范。</p>
-            </div>
-        </div>
+
     </div>
 </div>
 
@@ -185,6 +123,14 @@
                     type: "post",
                     success: func
                 })
+            },
+            productPage:function (data,func) {
+                $.ajax({
+                    url:"/product/page",
+                    type:"post",
+                    data:data,
+                    success: func
+                })
             }
         },
         binding: function () {
@@ -207,23 +153,110 @@
                 $('#myModal').modal('show')
             })
         },
+        pageHelp:{
+            page:1,
+            flag:true,
+            dataArray:[],
+            /**
+             * 下一页码
+             */
+            next:function () {
+                accessManager.ajax.productPage({page:accessManager.pageHelp.page},function (result) {
+                    if(result.code==200){
+                        if (result.data.length<=0){
+                            accessManager.pageHelp.flag=false
+                            $("#mmm").show();
+                        }
+                        accessManager.pageHelp.page++;
+                        accessManager.pageHelp.xuanran(result.data)
+                        accessManager.pageHelp.dataArray=accessManager.pageHelp.dataArray.concat(result.data);
+                    }else {
+                        accessManager.pageHelp.flag=false
+                        $("#mmm").show();
+                    }
+                })
+            },
+            checkScrollbar:function () {
+                setTimeout(function () {
+                    let flag=document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
+                    if (!flag){
+                        if(accessManager.pageHelp.flag ){
+                            accessManager.ajax.productPage({page:accessManager.pageHelp.page},function (result) {
+                                if(result.code==200){
+                                    if (result.data.length>0){
+                                        accessManager.pageHelp.xuanran(result.data)
+                                        accessManager.pageHelp.dataArray=accessManager.pageHelp.dataArray.concat(result.data);
+                                        accessManager.pageHelp.checkScrollbar();
+                                    } else {
+                                        accessManager.pageHelp.flag=false
+                                        $("#mmm").show();
+                                    }
+                                    accessManager.pageHelp.page++;
+                                }else {
+                                    accessManager.pageHelp.flag=false
+                                    $("#mmm").show();
+                                }
+                            })
+
+                        }
+                    }
+                })
+
+            },
+            xuanran:function(data){
+                if (data){
+
+                    for (let i=0;i<data.length;i++){
+                        let index=$("#cards").children(".row:last-child").attr("data-index")
+                        if (!index||index==4){
+                            $("#cards").append("<div class=\"row\" data-index=\"0\"> </div>")
+                        }
+                        $("#cards").children(".row:last-child").append(
+                                "        <div class=\"col-lg-3 col-md-4\" data-id='"+data[i].productType.id+"'>\n" +
+                                "                <div class=\"items text-center\" >\n" +
+                                "                    <img class=\"img-responsive\"\n" +
+                                "                         src='"+data[i].imgResources[0].showUrl+"'/>\n" +
+                                "                    <h3>"+data[i].name+"</h3>\n" +
+                                "                    <p>标签</p>\n" +
+                                "                    <p>介绍</p>\n" +
+                                "                </div>\n" +
+                                "            </div>")
+                        let x=parseInt($("#cards").children(".row:last-child").attr("data-index"))+1;
+                        $("#cards").children(".row:last-child").attr("data-index",x)
+                    }
+                }
+            },
+            monitorScrollbar:function () {
+                $(window).scroll(function () {
+
+                    //浏览器的高度加上滚动条的高度
+                    let h = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
+
+                    if ($(document).height() <= h&&accessManager.pageHelp.flag) {
+
+                       accessManager.pageHelp.next();
+                    }
+                });
+            },
+            init:function () {
+                accessManager.pageHelp.checkScrollbar();
+                accessManager.pageHelp.monitorScrollbar();
+            }
+        },
         check:function(){
           let accessId = cookieManger.getAccessId();
           cookieManger.ajax.check(accessId,function (result) {
               if (result.code==200){
                   $("#wname").text(result.data.accessKey)
-                  if (result.data.managerPower==1) {
+                  if (result.data.managerPower==0) {
                       $("#btn-manager").show()
                   }
-
-                  
               }else {
                   alert("登录异常");
               }
           })
         },
         initCat:function(){
-            console.log("请求");
             accessManager.ajax.typeAll(function (result) {
                 if (result.code==200){
                     if (result.data){
@@ -234,13 +267,18 @@
                             let jQuery = $(this).children("a").eq(0).text();
                             $("#carte").text(jQuery);
                             let attr = $(this).attr("data-id");
+                            $("#cards").empty();
                             if (attr==-1){
-                                $(".items").parent("div").show();
+                               accessManager.pageHelp.xuanran(accessManager.pageHelp.dataArray);
                                 return;
                             }
-                            $(".items").parent("div").hide()
-                            console.log(attr)
-                            $("div [data-id="+attr+"]").show();
+                            let array=[]
+                            for (let i=0;i<accessManager.pageHelp.dataArray.length;i++){
+                                if (attr==accessManager.pageHelp.dataArray[i].typeId){
+                                    array.push(accessManager.pageHelp.dataArray[i])
+                                }
+                            }
+                            accessManager.pageHelp.xuanran(array);
                         })
                     }
                 }
@@ -250,6 +288,7 @@
             accessManager.initCat();
             accessManager.check();
             accessManager.binding();
+            accessManager.pageHelp.init()
         },
     }
 
@@ -257,20 +296,6 @@
         accessManager.init();
     })
 
-/*
-    /!*    $(window).scroll(function () {
-            //浏览器的高度加上滚动条的高度
-            var h = parseFloat($(window).height()) + parseFloat($(window).scrollTop());
-            if (nowH > h) {
-                //这里防止重复加载
-                return;
-            }
-            console.log("现在的高：" + $(document).height() + "现在的高：" + h)
-            nowH = h;
-            if ($(document).height() <= h) {
-                console.log("开始加载数据")
-            }
-        });*!/*/
 </script>
 </body>
 </html>

@@ -62,12 +62,4 @@ public class ExecSqlHelp {
       LOGGER.info("endExecSql");
   }
 
-    public static void main(String[] args) {
-      String url="jdbc:mysql://47.52.70.180:3306/erp?characterEncoding=utf8&useSSL=false";
-      String driver="com.mysql.jdbc.Driver";
-        String userName="root";
-        String pwd="sunjiaqing";
-        ExecSqlHelp.exec(url,driver,userName,pwd,"D:\\weidian_git\\product-lib\\product-web\\src\\main\\resources\\init.sql");
-    }
-
 }
