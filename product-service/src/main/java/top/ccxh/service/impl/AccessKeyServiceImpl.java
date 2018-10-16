@@ -70,5 +70,14 @@ public class AccessKeyServiceImpl extends BaseService implements AccessKeyServic
         return pageModel;
     }
 
+    @Override
+    public boolean updateByPrimaryKeySelective(Accesskey accesskey) {
+        accesskey.quickUpdateTime();
+        return accessKeyMapper.updateByPrimaryKeySelective(accesskey)==1;
+
+    }
+
+
+
 
 }

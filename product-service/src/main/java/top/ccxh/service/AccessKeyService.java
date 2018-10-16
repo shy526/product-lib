@@ -70,4 +70,12 @@ public interface AccessKeyService {
     Accesskey selectById(int id);
 
     PageModel limitPage(PageModel pageModel);
+
+    /**
+     *只更新非空字段更新管理权限
+     * @return
+     */
+    boolean updateByPrimaryKeySelective(Accesskey accesskey);
+
+
 }

@@ -33,7 +33,7 @@
 
                 <h1 class="text-center"><img class="img-responsive center-block"
                                              src="https://static.bootcss.com/www/assets/img/codeguide.png?1507601668481"/
-                    >类目管理</h1>
+                    >邀请码管理</h1>
             </div>
 
         </div>
@@ -174,9 +174,9 @@
                     sortable: true,
                     formatter: function (value, row, index) {
                         if (value == 0) {
-                            return "<button type=\"button\" class=\"btn btn-success\" onclick='typeManage.ajax.updateStatus(" + row.id + "," + index + ",1)'>可用</button>"
+                            return "<button type=\"button\" class=\"btn btn-success\" onclick='accessManager.ajax.updateAccess(" + row.id + "," + index + ",1)'>可用</button>"
                         } else if (value == 1) {
-                            return "<button type=\"button\" class=\"btn btn-danger\" onclick='typeManage.ajax.updateStatus(" + row.id + "," + index + ",0)'>不可用</button>"
+                            return "<button type=\"button\" class=\"btn btn-danger\" onclick='accessManager.ajax.updateAccess(" + row.id + "," + index + ",0)'>不可用</button>"
                         }
                     }
                 }, {
@@ -190,9 +190,9 @@
                     sortable: true,
                     formatter: function (value, row, index) {
                         if (value == 0) {
-                            return "<button type=\"button\" class=\"btn btn-success\" onclick='typeManage.ajax.updateStatus(" + row.id + "," + index + ",1)'>可用</button>"
+                            return "<button type=\"button\" class=\"btn btn-success\" onclick='accessManager.ajax.updateManager(" + row.id + "," + index + ",1)'>可用</button>"
                         } else if (value == 1) {
-                            return "<button type=\"button\" class=\"btn btn-danger\" onclick='typeManage.ajax.updateStatus(" + row.id + "," + index + ",0)'>不可用</button>"
+                            return "<button type=\"button\" class=\"btn btn-danger\" onclick='accessManager.ajax.updateManager(" + row.id + "," + index + ",0)'>不可用</button>"
                         }
                     }
                 }, {
@@ -213,9 +213,9 @@
                     sortable: true,
                     formatter: function (value, row, index) {
                         if (value == 0) {
-                            return "<button type=\"button\" class=\"btn btn-success\" onclick='typeManage.ajax.updateStatus(" + row.id + "," + index + ",1)'>可用</button>"
+                            return "<button type=\"button\" class=\"btn btn-success\" onclick='accessManager.ajax.updateStatus(" + row.id + "," + index + ",1)'>可用</button>"
                         } else if (value == 1) {
-                            return "<button type=\"button\" class=\"btn btn-danger\" onclick='typeManage.ajax.updateStatus(" + row.id + "," + index + ",0)'>不可用</button>"
+                            return "<button type=\"button\" class=\"btn btn-danger\" onclick='accessManager.ajax.updateStatus(" + row.id + "," + index + ",0)'>不可用</button>"
                         }
                     }
                 }, {
@@ -245,10 +245,155 @@
         },
         init:function() {
             accessManager.initTable();
+        },
+        ajax:{
+            /**
+             * 更新dataStatus字段
+             * @param id
+             * @param index
+             * @param status
+             */
+            updateStatus:function (id, index, status) {
+               if (id==1){
+                    alert("guest 邀请码无法修改")
+                    return;
+                }
+                if (id==2){
+                    alert("manager 邀请码无法修改")
+                    return;
+                }
+                $.ajax({
+                    url: "/access/update/status",
+                    type: "post",
+                    data: {
+                        id: id,
+                        status: status
+                    },
+                    success: function (result) {
+                        if (result.code == 200) {
+                            $("#type-table").bootstrapTable('updateCell', {
+                                index: index,
+                                field: "dataStatus",
+                                value: status
+                            });
+
+                        } else {
+                            alert("修改出错")
+                        }
+                    }
+                })
+            },
+            updateAccess:function (id, index, status) {
+                if (id==1){
+                    alert("guest 邀请码无法修改")
+                    return;
+                }
+                if (id==2){
+                    alert("manager 邀请码无法修改")
+                    return;
+                }
+                $.ajax({
+                    url: "/access/update/access",
+                    type: "post",
+                    data: {
+                        id: id,
+                        accessPower: status
+                    },
+                    success: function (result) {
+                        if (result.code == 200) {
+                            $("#type-table").bootstrapTable('updateCell', {
+                                index: index,
+                                field: "accessPower",
+                                value: status
+                            });
+
+                        } else {
+                            alert("修改出错")
+                        }
+                    }
+                })
+            },
+            updateManager:function (id, index, status) {
+                if (id==1){
+                    alert("guest 邀请码无法修改")
+                    return;
+                }
+                if (id==2){
+                    alert("manager 邀请码无法修改")
+                    return;
+                }
+                $.ajax({
+                    url: "/access/update/manager",
+                    type: "post",
+                    data: {
+                        id: id,
+                        managerPower: status
+                    },
+                    success: function (result) {
+                        if (result.code == 200) {
+                            $("#type-table").bootstrapTable('updateCell', {
+                                index: index,
+                                field: "managerPower",
+                                value: status
+                            });
+
+                        } else {
+                            alert("修改出错")
+                        }
+                    }
+                })
+            },
+            delete: function (ids, func) {
+                $.ajax({
+                    url: "/access/delete",
+                    type: "post",
+                    data: {
+                        ids: ids
+                    },
+                    success: func
+                })
+            },
+        },
+        binding:function () {
+            $("#btn_delete").click(function () {
+                let selects = $("#type-table").bootstrapTable('getSelections');
+                if (!selects || selects.length <= 0) {
+                    alert("还没有勾选要删除的邀请码")
+                    return;
+                }
+                let names = "";
+                let ids = []
+                for (let i = 0; i < selects.length; i++) {
+                    let select = selects[i];
+                    names += select.accessKey + ",";
+                    if (select.id==1){
+                        alert("guest 邀请码 无法删除")
+                        return
+                    }
+                    if (select.id==2){
+                        alert("manger 邀请码 无法删除")
+                        return
+                    }
+                    ids.push(select.id)
+                }
+                names = names.substr(0, names.length - 1)
+                if (confirm("将要删除的邀请码:" + names)) {
+                    accessManager.ajax.delete(ids, function (result) {
+                        if (result.code == 200) {
+                            for (let i = 0; i < ids.length; i++) {
+                                $("#type-table").bootstrapTable('removeByUniqueId', ids[i]);
+                            }
+                        } else {
+                            alert("删除异常,将为你刷新,请检查")
+                        }
+                    })
+                }
+            })
         }
     }
     $(function () {
-        accessManager.init()
+        accessManager.init();
+        accessManager.binding();
     })
 </script>
 </body>

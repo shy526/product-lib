@@ -25,30 +25,6 @@ public class NoAccessKeyController {
 
     @Autowired
     AccessKeyService accessKeyService;
-    @RequestMapping("all")
-    @ResponseBody
-    public List<Accesskey> selectAll(){
-        List<Accesskey> accesskeys = accessKeyService.selectAll();
-        System.out.println("accesskeys = " + accesskeys);
-        return accesskeys;
-    }
-    @RequestMapping("delete")
-    @ResponseBody
-    public Result deleteIds(@RequestParam(value="ids[]") List<Integer >ids){
-        if(accessKeyService.bathDeleteAccessKeyByid(ids)) {
-            return Result.ok();
-        }
-        return Result.error();
-    }
-
-    @RequestMapping("update/status")
-    @ResponseBody
-    public Result updateStatus(Integer id, Integer status){
-        if(accessKeyService.updateAccessKeyStatus(id,status)) {
-            return Result.ok();
-        }
-        return Result.error();
-    }
     @RequestMapping("page/list")
     public String goList(){
         return "access/list";
